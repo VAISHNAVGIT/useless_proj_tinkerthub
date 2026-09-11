@@ -10,7 +10,7 @@ import { SystemState } from './types';
 import type { SystemStatus, LogEntry, WSEventMessage } from './types';
 import { wsService } from './services/websocket';
 import { soundService } from './services/sound';
-import { RefreshCw, Sliders } from 'lucide-react';
+import { RefreshCw, Sliders, Heart } from 'lucide-react';
 
 const FUNNY_MESSAGES = {
   OBJECT_DETECTED: [
@@ -64,6 +64,7 @@ export function App() {
   const [showDebug, setShowDebug] = useState(false);
   const [isResettingSystem, setIsResettingSystem] = useState(false);
   const [angryMode, setAngryMode] = useState(false);
+  const [isAdored, setIsAdored] = useState(false);
   const [yesEscapeCount, setYesEscapeCount] = useState(0);
   const [lidCountdownMs, setLidCountdownMs] = useState(0);
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
@@ -100,6 +101,23 @@ export function App() {
       return next;
     });
   }, []);
+
+  const handleCaressBin = useCallback(() => {
+    setIsAdored(true);
+    soundService.playAdoreSound();
+    const adoreMessages = [
+      "Bin loved the caress! It's blushing and smiling! 🥰💖",
+      "Bin feels cherished and adored! Purrrr~ 💕",
+      "Bin's heart melted from your affection! ✨",
+      "Bin gave a sweet smile and rosy blushes! 🌸"
+    ];
+    const randomMsg = adoreMessages[Math.floor(Math.random() * adoreMessages.length)];
+    addLog(`[CARESS & ADORE] ${randomMsg}`, 'success');
+
+    setTimeout(() => {
+      setIsAdored(false);
+    }, 3500);
+  }, [addLog]);
 
   useEffect(() => {
     localStorage.setItem(TRUST_STORAGE_KEY, String(systemTrust));
@@ -176,7 +194,7 @@ export function App() {
         setVerificationActive(true);
       } 
       else if (event.event === 'REJECTION_STARTED') {
-        addLog('[SERVO REJECT] Physical bottom rejection door opening', 'error');
+        addLog('[SERVO REJECT] Physical bottom rejection door opening - ANGRY TEETH ENGAGED!', 'error');
       } 
       else if (event.event === 'REJECTION_COMPLETED') {
         const funnyMsg = FUNNY_MESSAGES.REJECTED[Math.floor(Math.random() * FUNNY_MESSAGES.REJECTED.length)];
@@ -255,9 +273,11 @@ export function App() {
             lidOpen={status.lidOpen}
             rejectionOpen={status.rejectionOpen}
             distance={status.distance}
-            isAngry={angryMode || status.state === SystemState.REJECTING || isResettingSystem}
+            isAngry={angryMode || status.state === SystemState.REJECTING || isResettingSystem || status.rejectionOpen}
+            isAdored={isAdored}
             theme={theme}
             onToggleLid={handleToggleLid3D}
+            onCaress={handleCaressBin}
           />
 
           {status.state === SystemState.WAITING_FOR_WASTE && (
@@ -278,6 +298,18 @@ export function App() {
 
           {/* Floating Action Controls */}
           <div className="absolute bottom-6 left-6 flex items-center gap-3 z-20">
+            <button
+              onClick={handleCaressBin}
+              className={`px-5 py-3 rounded-2xl border-3 border-slate-900 font-black text-xs md:text-sm uppercase tracking-wider flex items-center gap-2 shadow-cartoon transition-all transform active:translate-x-1 active:translate-y-1 hover:scale-105 ${
+                isAdored
+                  ? 'bg-pink-500 text-white animate-bounce shadow-cartoon-pink border-pink-950'
+                  : (isLight ? 'bg-pink-400 hover:bg-pink-300 text-slate-950' : 'bg-pink-500 hover:bg-pink-400 text-slate-950')
+              }`}
+              title="Caress and adore the waste bin"
+            >
+              <Heart className={`w-5 h-5 ${isAdored ? 'fill-current text-white animate-pulse' : 'fill-slate-950 text-slate-950'}`} />
+              <span>{isAdored ? 'LOVED & BLUSHING! 🥰' : 'CARESS & ADORE 💖'}</span>
+            </button>
 
             <button
               onClick={() => setShowDebug(!showDebug)}

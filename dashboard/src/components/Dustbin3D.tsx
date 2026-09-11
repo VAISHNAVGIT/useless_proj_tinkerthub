@@ -7,8 +7,10 @@ interface Dustbin3DProps {
   rejectionOpen: boolean;
   distance: number;
   isAngry?: boolean;
+  isAdored?: boolean;
   theme?: 'dark' | 'light';
   onToggleLid?: () => void;
+  onCaress?: () => void;
 }
 
 export const Dustbin3D: React.FC<Dustbin3DProps> = ({
@@ -16,12 +18,15 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
   rejectionOpen,
   distance,
   isAngry = false,
+  isAdored = false,
   theme = 'dark',
   onToggleLid,
+  onCaress,
 }) => {
   const mountRef = useRef<HTMLDivElement>(null);
   const lidPivotRef = useRef<THREE.Group | null>(null);
   const lidMeshRef = useRef<THREE.Mesh | null>(null);
+  const binMeshRef = useRef<THREE.Mesh | null>(null);
   const rejectPivotRef = useRef<THREE.Group | null>(null);
   const wasteMeshRef = useRef<THREE.Mesh | null>(null);
   const pupilLeftRef = useRef<THREE.Mesh | null>(null);
@@ -30,6 +35,12 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
   const eyeRightRef = useRef<THREE.Mesh | null>(null);
   const redLightRef = useRef<THREE.PointLight | null>(null);
   const stinkGroupRef = useRef<THREE.Group | null>(null);
+
+  const binGroupRef = useRef<THREE.Group | null>(null);
+  const blushLeftRef = useRef<THREE.Mesh | null>(null);
+  const blushRightRef = useRef<THREE.Mesh | null>(null);
+  const smileMeshRef = useRef<THREE.Mesh | null>(null);
+  const angryMouthGroupRef = useRef<THREE.Group | null>(null);
 
   const targetLidAngle = useRef(0);
   const currentLidAngle = useRef(0);
@@ -40,12 +51,13 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
   const rejectionOpenRef = useRef(rejectionOpen);
   const lidOpenRef = useRef(lidOpen);
   const isAngryRef = useRef(isAngry);
+  const isAdoredRef = useRef(isAdored);
 
   const [comicText, setComicText] = useState<string | null>(null);
 
   const isLight = theme === 'light';
 
-  // Comic Sound & Action Text Popups
+  // Comic Sound & Action Text Popups for Lid
   useEffect(() => {
     targetLidAngle.current = lidOpen ? -Math.PI / 2 : 0;
     lidOpenRef.current = lidOpen;
@@ -60,16 +72,28 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
     return () => clearTimeout(timer);
   }, [lidOpen]);
 
+  // Comic Text Popup when Rejection Servo is in action
   useEffect(() => {
     targetRejectAngle.current = rejectionOpen ? Math.PI * 0.80 : 0;
     rejectionOpenRef.current = rejectionOpen;
 
     if (rejectionOpen) {
-      setComicText('YEET! 🚀 DENIED!');
-      const timer = setTimeout(() => setComicText(null), 1800);
+      setComicText('🤬 ANGRY TEETH OUT! DENIED! 🚀');
+      const timer = setTimeout(() => setComicText(null), 2000);
       return () => clearTimeout(timer);
     }
   }, [rejectionOpen]);
+
+  // Comic Text Popup when Caressed / Adored
+  useEffect(() => {
+    isAdoredRef.current = isAdored;
+    if (isAdored) {
+      const cuteTexts = ['SO LOVED! 🥰💖', 'PURRRR~ 💕', 'HEART MELTED! ✨', 'AWHHH! BEST BIN! 🌸'];
+      setComicText(cuteTexts[Math.floor(Math.random() * cuteTexts.length)]);
+      const timer = setTimeout(() => setComicText(null), 2500);
+      return () => clearTimeout(timer);
+    }
+  }, [isAdored]);
 
   useEffect(() => {
     isAngryRef.current = isAngry;
@@ -134,7 +158,7 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
     scene.add(redLight);
     redLightRef.current = redLight;
 
-    // 6. Ground & Pedestal (Dark Neubrutalist Base)
+    // 6. Ground & Pedestal Base
     const pedestalGeo = new THREE.CylinderGeometry(2.3, 2.5, 0.18, 32);
     const pedestalMat = new THREE.MeshToonMaterial({ color: 0x0f172a });
     const pedestal = new THREE.Mesh(pedestalGeo, pedestalMat);
@@ -153,6 +177,7 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
     const binGroup = new THREE.Group();
     binGroup.position.y = 0.18;
     scene.add(binGroup);
+    binGroupRef.current = binGroup;
 
     // Vibrant Sky Blue Cyan Body
     const binGeo = new THREE.CylinderGeometry(0.9, 0.9, 2.3, 32);
@@ -166,6 +191,7 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
     binMesh.castShadow = true;
     binMesh.receiveShadow = true;
     binGroup.add(binMesh);
+    binMeshRef.current = binMesh;
 
     // Cartoon Stripes & Outlines
     const stripeGeo = new THREE.TorusGeometry(0.92, 0.045, 16, 32);
@@ -182,7 +208,7 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
     stripe2Mesh.position.y = 1.8;
     binGroup.add(stripe2Mesh);
 
-    // 8. CUTE CARTOON 3D GOOGLY EYES WITH BLINK & EXPRESSION CONTROL
+    // 8. CUTE CARTOON 3D GOOGLY EYES WITH EXPRESSION CONTROL
     const eyeGroup = new THREE.Group();
     eyeGroup.position.set(0, 1.45, 0.92);
     binGroup.add(eyeGroup);
@@ -213,7 +239,7 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
     eyeGroup.add(pupilRight);
     pupilRightRef.current = pupilRight;
 
-    // Eyebrows for Angry Expression
+    // Eyebrows for Angry & Happy Expressions
     const browGeo = new THREE.BoxGeometry(0.22, 0.04, 0.05);
     const browMat = new THREE.MeshBasicMaterial({ color: 0x0f172a });
     const browLeft = new THREE.Mesh(browGeo, browMat);
@@ -226,7 +252,64 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
     browRight.rotation.z = 0.3;
     eyeGroup.add(browRight);
 
-    // 9. CARTOON SUNSHINE YELLOW LID
+    // 9. ROSY BLUSH CHEEKS (For Caress & Adore Reaction)
+    const blushGeo = new THREE.SphereGeometry(0.12, 16, 16);
+    blushGeo.scale(1.4, 0.7, 0.4);
+    const blushMat = new THREE.MeshBasicMaterial({ color: 0xff69b4, transparent: true, opacity: 0 });
+
+    const blushLeft = new THREE.Mesh(blushGeo, blushMat);
+    blushLeft.position.set(-0.44, 1.25, 0.88);
+    binGroup.add(blushLeft);
+    blushLeftRef.current = blushLeft;
+
+    const blushRight = new THREE.Mesh(blushGeo, blushMat);
+    blushRight.position.set(0.44, 1.25, 0.88);
+    binGroup.add(blushRight);
+    blushRightRef.current = blushRight;
+
+    // 10. CUTE SMILING MOUTH (For Caress & Adore Reaction)
+    const smileGeo = new THREE.TorusGeometry(0.15, 0.03, 16, 32, Math.PI);
+    const smileMat = new THREE.MeshBasicMaterial({ color: 0x0f172a });
+    const smileMesh = new THREE.Mesh(smileGeo, smileMat);
+    smileMesh.position.set(0, 1.15, 0.92);
+    smileMesh.rotation.z = Math.PI; // Curved upward U-shape smile!
+    smileMesh.visible = false;
+    binGroup.add(smileMesh);
+    smileMeshRef.current = smileMesh;
+
+    // 11. ANGRY TEETH & MOUTH GROUP (Pops out when Reject Servo active or Angry Mode)
+    const angryMouthGroup = new THREE.Group();
+    angryMouthGroup.position.set(0, 1.12, 0.93);
+    angryMouthGroup.visible = false;
+    binGroup.add(angryMouthGroup);
+    angryMouthGroupRef.current = angryMouthGroup;
+
+    // Dark red inner mouth cavity
+    const cavityGeo = new THREE.BoxGeometry(0.55, 0.28, 0.08);
+    const cavityMat = new THREE.MeshBasicMaterial({ color: 0x500707 });
+    const cavityMesh = new THREE.Mesh(cavityGeo, cavityMat);
+    angryMouthGroup.add(cavityMesh);
+
+    // Sharp white teeth popping out (Top row)
+    const toothTopGeo = new THREE.ConeGeometry(0.045, 0.12, 4);
+    toothTopGeo.rotateX(Math.PI); // Point down
+    const toothMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.1 });
+
+    for (let i = 0; i < 5; i++) {
+      const tooth = new THREE.Mesh(toothTopGeo, toothMat);
+      tooth.position.set(-0.2 + i * 0.1, 0.08, 0.05);
+      angryMouthGroup.add(tooth);
+    }
+
+    // Sharp white teeth popping out (Bottom row)
+    const toothBottomGeo = new THREE.ConeGeometry(0.045, 0.12, 4); // Point up
+    for (let i = 0; i < 5; i++) {
+      const tooth = new THREE.Mesh(toothBottomGeo, toothMat);
+      tooth.position.set(-0.2 + i * 0.1, -0.08, 0.05);
+      angryMouthGroup.add(tooth);
+    }
+
+    // 12. CARTOON SUNSHINE YELLOW LID
     const lidPivot = new THREE.Group();
     lidPivot.position.set(0, 2.3, -0.9);
     binGroup.add(lidPivot);
@@ -246,7 +329,7 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
     handleMesh.position.set(0, 0.22, 0.9);
     lidPivot.add(handleMesh);
 
-    // 10. CARTOON VIVID ORANGE REJECTION TRAPDOOR
+    // 13. CARTOON VIVID ORANGE REJECTION TRAPDOOR
     const rejectPivot = new THREE.Group();
     rejectPivot.position.set(0, 0.06, -0.9);
     binGroup.add(rejectPivot);
@@ -259,7 +342,7 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
     rejectMesh.castShadow = true;
     rejectPivot.add(rejectMesh);
 
-    // 11. Cartoon Stink Particle System (Floating green spheres when lid opens)
+    // 14. Cartoon Stink Particle System (Floating green spheres when lid opens)
     const stinkGroup = new THREE.Group();
     stinkGroup.position.set(0, 2.4, 0);
     binGroup.add(stinkGroup);
@@ -284,7 +367,33 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
       });
     }
 
-    // 12. Cartoon Crumpled Waste Object
+    // 15. FLOATING HEART PARTICLES SYSTEM (For Caress & Adore reaction)
+    const heartGroup = new THREE.Group();
+    heartGroup.position.set(0, 2.4, 0);
+    binGroup.add(heartGroup);
+
+    const heartGeo = new THREE.SphereGeometry(0.07, 12, 12);
+    heartGeo.scale(1, 1.25, 0.5);
+    const heartMat = new THREE.MeshBasicMaterial({ color: 0xff1493 });
+    const heartParticles: { mesh: THREE.Mesh; speed: number; phase: number }[] = [];
+
+    for (let i = 0; i < 8; i++) {
+      const hMesh = new THREE.Mesh(heartGeo, heartMat);
+      hMesh.position.set(
+        (Math.random() - 0.5) * 0.9,
+        Math.random() * 0.6,
+        (Math.random() - 0.5) * 0.9
+      );
+      hMesh.visible = false;
+      heartGroup.add(hMesh);
+      heartParticles.push({
+        mesh: hMesh,
+        speed: 1.0 + Math.random() * 1.5,
+        phase: Math.random() * Math.PI * 2,
+      });
+    }
+
+    // 16. Cartoon Crumpled Waste Object
     const wasteGeo = new THREE.DodecahedronGeometry(0.36, 1);
     const wasteMat = new THREE.MeshStandardMaterial({ color: 0x10b981, roughness: 0.5 });
     const wasteMesh = new THREE.Mesh(wasteGeo, wasteMat);
@@ -293,28 +402,34 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
     binGroup.add(wasteMesh);
     wasteMeshRef.current = wasteMesh;
 
-    // 13. Raycaster for Direct Click Interaction on 3D Lid
+    // 17. Raycaster for Direct Click Interaction (Lid click vs Caress click)
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
 
     const handlePointerDown = (event: MouseEvent) => {
-      if (!onToggleLid || !mountRef.current) return;
+      if (!mountRef.current) return;
       const rect = mountRef.current.getBoundingClientRect();
       mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
       raycaster.setFromCamera(mouse, camera);
-      if (lidMeshRef.current) {
-        const intersects = raycaster.intersectObjects([lidMeshRef.current, lidPivot], true);
+
+      if (lidMeshRef.current || binMeshRef.current) {
+        const intersects = raycaster.intersectObjects(scene.children, true);
         if (intersects.length > 0) {
-          onToggleLid();
+          const hitObject = intersects[0].object;
+          if (onToggleLid && (hitObject === lidMeshRef.current || lidPivot.children.includes(hitObject))) {
+            onToggleLid();
+          } else if (onCaress) {
+            onCaress();
+          }
         }
       }
     };
 
     container.addEventListener('click', handlePointerDown);
 
-    // 14. Animation Render Loop
+    // 18. Animation Render Loop
     let animationFrameId: number;
     let clock = new THREE.Clock();
 
@@ -322,6 +437,9 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
       animationFrameId = requestAnimationFrame(animate);
       const delta = clock.getDelta();
       const elapsedTime = clock.getElapsedTime();
+
+      const isRejectingOrAngry = rejectionOpenRef.current || isAngryRef.current;
+      const isAdoredMode = isAdoredRef.current && !isRejectingOrAngry;
 
       // Top Lid Rotation
       if (lidPivotRef.current) {
@@ -363,29 +481,103 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
         }
       });
 
+      // Blush Cheeks Opacity & Glow Animation
+      if (blushLeftRef.current && blushRightRef.current) {
+        const leftMat = blushLeftRef.current.material as THREE.MeshBasicMaterial;
+        const rightMat = blushRightRef.current.material as THREE.MeshBasicMaterial;
+
+        if (isAdoredMode) {
+          leftMat.opacity = Math.min(1, leftMat.opacity + delta * 5);
+          rightMat.opacity = Math.min(1, rightMat.opacity + delta * 5);
+          const blushPulse = 1 + Math.sin(elapsedTime * 8) * 0.12;
+          blushLeftRef.current.scale.set(blushPulse, blushPulse, blushPulse);
+          blushRightRef.current.scale.set(blushPulse, blushPulse, blushPulse);
+        } else {
+          leftMat.opacity = Math.max(0, leftMat.opacity - delta * 4);
+          rightMat.opacity = Math.max(0, rightMat.opacity - delta * 4);
+        }
+      }
+
+      // Mouth Expressions (Smile vs Angry Teeth)
+      if (smileMeshRef.current) {
+        smileMeshRef.current.visible = isAdoredMode;
+      }
+
+      if (angryMouthGroupRef.current) {
+        if (isRejectingOrAngry) {
+          angryMouthGroupRef.current.visible = true;
+          // Angry teeth popping forward out of face with vicious chomping animation!
+          angryMouthGroupRef.current.position.z = 0.94 + Math.sin(elapsedTime * 25) * 0.04;
+          const teethScale = 1.25 + Math.sin(elapsedTime * 20) * 0.15;
+          angryMouthGroupRef.current.scale.set(teethScale, teethScale, teethScale);
+        } else {
+          angryMouthGroupRef.current.visible = false;
+        }
+      }
+
       // Googly Eyes & Angry Eyebrows
       if (pupilLeftRef.current && pupilRightRef.current) {
         const eyeOffset = Math.sin(elapsedTime * 3) * 0.035;
-        pupilLeftRef.current.position.x = -0.22 + eyeOffset;
-        pupilRightRef.current.position.x = 0.22 + eyeOffset;
 
-        if (isAngryRef.current) {
-          pupilLeftRef.current.scale.set(1.4, 0.4, 1);
-          pupilRightRef.current.scale.set(1.4, 0.4, 1);
-          browLeft.rotation.z = -0.45;
-          browRight.rotation.z = 0.45;
+        if (isRejectingOrAngry) {
+          // FEROCIOUS ANGRY REJECTION FACE
+          pupilLeftRef.current.position.x = -0.22 + eyeOffset;
+          pupilRightRef.current.position.x = 0.22 + eyeOffset;
+          pupilLeftRef.current.scale.set(1.5, 0.35, 1);
+          pupilRightRef.current.scale.set(1.5, 0.35, 1);
+          browLeft.rotation.z = -0.65; // Furious downward inner slant
+          browRight.rotation.z = 0.65;
+        } else if (isAdoredMode) {
+          // LOVING BLUSHING HAPPY SMILE EYES
+          pupilLeftRef.current.position.x = -0.22;
+          pupilRightRef.current.position.x = 0.22;
+          pupilLeftRef.current.scale.set(1.3, 0.3, 1); // Happy squished curved eyes!
+          pupilRightRef.current.scale.set(1.3, 0.3, 1);
+          browLeft.rotation.z = 0.35; // Sweet upward happy eyebrows
+          browRight.rotation.z = -0.35;
         } else if (lidOpenRef.current) {
+          pupilLeftRef.current.position.x = -0.22 + eyeOffset;
+          pupilRightRef.current.position.x = 0.22 + eyeOffset;
           pupilLeftRef.current.scale.set(1.3, 1.3, 1);
           pupilRightRef.current.scale.set(1.3, 1.3, 1);
           browLeft.rotation.z = -0.1;
           browRight.rotation.z = 0.1;
         } else {
+          pupilLeftRef.current.position.x = -0.22 + eyeOffset;
+          pupilRightRef.current.position.x = 0.22 + eyeOffset;
           pupilLeftRef.current.scale.set(1, 1, 1);
           pupilRightRef.current.scale.set(1, 1, 1);
           browLeft.rotation.z = -0.25;
           browRight.rotation.z = 0.25;
         }
       }
+
+      // Bin Body Movement (Sway when adored vs Jitter when angry/rejecting)
+      if (binGroupRef.current) {
+        if (isRejectingOrAngry) {
+          binGroupRef.current.rotation.z = (Math.random() - 0.5) * 0.08;
+          binGroupRef.current.rotation.x = (Math.random() - 0.5) * 0.04;
+        } else if (isAdoredMode) {
+          binGroupRef.current.rotation.z = Math.sin(elapsedTime * 6) * 0.09;
+          binGroupRef.current.rotation.x = Math.cos(elapsedTime * 6) * 0.04;
+        } else {
+          binGroupRef.current.rotation.set(0, 0, 0);
+        }
+      }
+
+      // Heart Particles Floating Effect (Caress & Adore mode)
+      heartParticles.forEach((p) => {
+        if (isAdoredMode) {
+          p.mesh.visible = true;
+          p.mesh.position.y += delta * p.speed;
+          p.mesh.position.x += Math.sin(elapsedTime * 5 + p.phase) * 0.02;
+          if (p.mesh.position.y > 2.0) {
+            p.mesh.position.y = 0;
+          }
+        } else {
+          p.mesh.visible = false;
+        }
+      });
 
       // Waste Drop & Purge Effect
       if (wasteMeshRef.current) {
@@ -402,7 +594,7 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
 
       // Angry Strobe Light
       if (redLightRef.current) {
-        if (isAngryRef.current) {
+        if (isRejectingOrAngry) {
           redLightRef.current.intensity = Math.sin(elapsedTime * 24) > 0 ? 14 : 0;
         } else {
           redLightRef.current.intensity = 0;
@@ -415,7 +607,7 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
 
     animate();
 
-    // 15. Dynamic Resize Observer
+    // 19. Dynamic Resize Observer
     const resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
         const newWidth = entry.contentRect.width;
@@ -440,7 +632,7 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
       }
       renderer.dispose();
     };
-  }, [onToggleLid, isLight]);
+  }, [onToggleLid, onCaress, isLight]);
 
   return (
     <div className={`relative w-full h-[58vh] min-h-[380px] md:min-h-[470px] max-h-[650px] rounded-3xl overflow-hidden transition-colors ${
@@ -470,7 +662,7 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
           Servo #1 (Lid): <span className="text-sky-500 font-black">{lidOpen ? 'OPEN (90°)' : 'CLOSED (0°)'}</span>
         </div>
         <div className={isLight ? 'text-slate-700 font-bold' : 'text-slate-300'}>
-          Servo #2 (Reject Door): <span className="text-red-500 font-black">{rejectionOpen ? 'PURGE (180°)' : 'CLOSED (0°)'}</span>
+          Servo #2 (Reject Door): <span className="text-red-500 font-black">{rejectionOpen ? 'PURGE & REJECT (180°)' : 'CLOSED (0°)'}</span>
         </div>
       </div>
 
@@ -483,7 +675,7 @@ export const Dustbin3D: React.FC<Dustbin3DProps> = ({
       <div className={`absolute bottom-4 right-4 text-xs font-mono font-black px-4 py-2 rounded-xl border-3 border-slate-900 shadow-cartoon pointer-events-none -rotate-1 ${
         isLight ? 'bg-yellow-300 text-slate-950' : 'bg-yellow-400 text-slate-950'
       }`}>
-        💡 Click lid or drag to rotate 3D view
+        💡 Click bin to caress/adore or lid to open
       </div>
     </div>
   );
