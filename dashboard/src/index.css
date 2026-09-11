@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+@layer utilities {
+  /* Cartoon Neubrutalist Borders */
+  .border-3 {
+    border-width: 3px;
+  }
+  .border-4 {
+    border-width: 4px;
+  }
+  .border-5 {
+    border-width: 5px;
+  }
+
+  /* Cartoon Neubrutalist Hard Drop Shadows */
+  .shadow-cartoon-sm {
+    box-shadow: 2px 2px 0px #0f172a;
+  }
+  .shadow-cartoon {
+    box-shadow: 4px 4px 0px #0f172a;
+  }
+  .shadow-cartoon-lg {
+    box-shadow: 6px 6px 0px #0f172a;
+  }
+  .shadow-cartoon-xl {
+    box-shadow: 8px 8px 0px #0f172a;
+  }
+
+  /* Vibrant Neon Cartoon Shadows for Dark Mode */
+  .shadow-cartoon-neon {
+    box-shadow: 5px 5px 0px #facc15;
+  }
+  .shadow-cartoon-pink {
+    box-shadow: 5px 5px 0px #ec4899;
+  }
+
+  /* Comic Halftone Polka Dot Background Patterns */
+  .bg-halftone-light {
+    background-color: #fefce8;
+    background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
+    background-size: 16px 16px;
+  }
+
+  .bg-halftone-dark {
+    background-color: #0b0f19;
+    background-image: radial-gradient(#1e293b 1.8px, transparent 1.8px);
+    background-size: 18px 18px;
+  }
+
+  .bg-halftone-pop {
+    background-color: #fff7ed;
+    background-image: radial-gradient(#fb7185 2px, transparent 2px);
+    background-size: 20px 20px;
+  }
+}
+
+/* Animations */
+@keyframes shake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-5px, 4px) rotate(-1.5deg); }
+  40% { transform: translate(5px, -4px) rotate(1.5deg); }
+  60% { transform: translate(-4px, -3px) rotate(-0.5deg); }
+  80% { transform: translate(4px, 3px) rotate(1deg); }
+}
+
+@keyframes warning-scan {
+  0% { transform: translateY(-100%); opacity: 0; }
+  20%, 80% { opacity: 0.55; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+@keyframes cartoon-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.03); }
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.3) rotate(-12deg); opacity: 0; }
+  70% { transform: scale(1.15) rotate(4deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+@keyframes stink-rise {
+  0% { transform: translateY(0) scale(0.6); opacity: 0.8; }
+  50% { transform: translateY(-25px) translateX(8px) scale(1.1); opacity: 0.9; }
+  100% { transform: translateY(-55px) translateX(-8px) scale(1.4); opacity: 0; }
+}
+
+@keyframes float-ambient {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(6deg); }
+}
+
+.animate-shake {
+  animation: shake 0.25s ease-in-out infinite;
+}
+
+.animate-cartoon-bounce {
+  animation: cartoon-bounce 1.4s ease-in-out infinite;
+}
+
+.animate-pop-in {
+  animation: pop-in 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-wobble {
+  animation: wobble 2s ease-in-out infinite;
+}
+
+.animate-stink-1 {
+  animation: stink-rise 1.8s ease-out infinite;
+}
+
+.animate-stink-2 {
+  animation: stink-rise 2.2s ease-out 0.6s infinite;
+}
+
+.animate-stink-3 {
+  animation: stink-rise 2.0s ease-out 1.2s infinite;
+}
+
+.animate-float-slow {
+  animation: float-ambient 4s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float-ambient 2.5s ease-in-out infinite;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fef08a;
+  border-left: 2px solid #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0f172a;
+  border-radius: 4px;
+  border: 2px solid #fef08a;
+}
+
+.angry-mode {
+  animation: shake 0.2s ease-in-out infinite;
+}
+
+.angry-mode::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(239, 68, 68, 0.25) 0 20px,
+      rgba(250, 204, 21, 0.2) 20px 40px
+    );
+  mix-blend-mode: color-burn;
+  animation: warning-scan 0.9s linear infinite;
+}
+
