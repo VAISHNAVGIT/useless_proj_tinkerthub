@@ -97,11 +97,11 @@ For Hardware:
 
 ### Project Demo
 # Video
-[Software Demo Video](videos/demo%20video%20software%20.mp4)
+![Software Demo Video](images/software_demo.gif)
 *Demonstrates the WebGL 3D dashboard, Waste Tribunal case popup, sound effects, and full-screen evasive YES button physics.*
 
 # Additional Demos
-[Hardware Demo Video](videos/hardware%20demo%20video.mp4)
+![Hardware Demo Video](images/hardware_demo.gif)
 *Shows the physical ESP32 bin detecting waste, opening the top lid, receiving WebSocket commands, and triggering the bottom rejection door to dump waste.*
 
 ## Team Contributions
