@@ -102,12 +102,12 @@ For Hardware:
 ## 🎥 Project Demo
 
 [▶️ Watch the Demo Video](https://drive.google.com/file/d/1OewOA4GsU9W6zA58sZD-3-WlhjrQukd1/view?usp=sharing)
-*Demonstrates the WebGL 3D dashboard, Waste Tribunal case popup, sound effects, and full-screen evasive YES button physics.*
+- *Demonstrates the WebGL 3D dashboard, Waste Tribunal case popup, sound effects, and full-screen evasive YES button physics.*
 
 # Additional Demos
 ![Hardware Demo Video](images/hardware_demo.gif)
 [▶️ Watch the Demo Video](https://drive.google.com/file/d/1Zwif39WzWgbZErMasutLqKOMjEUEVCMh/view?usp=sharing)
-*Shows the physical ESP32 bin detecting waste, opening the top lid, receiving WebSocket commands, and triggering the bottom rejection door to dump waste.*
+- *Shows the physical ESP32 bin detecting waste, opening the top lid, receiving WebSocket commands, and triggering the bottom rejection door to dump waste.*
 
 ## Team Contributions
 - Anshias Anto: Developed the React 3D Dashboard, WebGL Three.js bin model, WebSocket client service, full-screen evasive button physics & clamping algorithm, retro-cartoon design system, and custom Web Audio sound engine.
