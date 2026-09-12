@@ -97,16 +97,15 @@ For Hardware:
 *Final completed physical build of the DOES THIS BELONG HERE? Smart Dustbin.*
 
 ### Project Demo
-# Video
+# 🎥 Video
 ![Software Demo Video](images/software_demo.gif)
-## 🎥 Project Demo
+## 🎥 Software Demo Video
 
 [▶️ Watch the Software Demo Video](https://drive.google.com/file/d/1OewOA4GsU9W6zA58sZD-3-WlhjrQukd1/view?usp=sharing)
 - *Demonstrates the WebGL 3D dashboard, Waste Tribunal case popup, sound effects, and full-screen evasive YES button physics.*
 
-# Additional Demos
-![Hardware Demo Video](images/hardware_demo.gif)
-![▶️ Watch the Hardware Demo Video](https://drive.google.com/file/d/1Zwif39WzWgbZErMasutLqKOMjEUEVCMh/view?usp=sharing)
+# 🎥 Hardware Demo Video
+[▶️ Watch the Hardware Demo Video](https://drive.google.com/file/d/1Zwif39WzWgbZErMasutLqKOMjEUEVCMh/view?usp=sharing)
 - *Shows the physical ESP32 bin detecting waste, opening the top lid, receiving WebSocket commands, and triggering the bottom rejection door to dump waste.*
 
 ## Team Contributions
