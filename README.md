@@ -90,7 +90,7 @@ For Hardware:
 
 <img src="images/hardware%20back%20view.jpg" alt="Final" width="500">
 
-*Physical mechanical schematic showing dual-servo trapdoor assembly for top intake and bottom rejection.*
+*The assembled prototype showing the ESP32, Arduino Uno, IR sensor, servo motor, and supporting wiring integrated into the system.*
 
 # Build Photos
 <img src="images/components.png" alt="Final" width="500">
