@@ -52,16 +52,16 @@ For Software:
 
 # Screenshots (Add at least 3)
 ![Dashboard Overview](images/software2.png)
-*Interactive Retro-Cartoon 3D Dashboard showing real-time bin status, live event log, sound FX toggle, and waste tribunal controls.*
+**Initial State:* The dashboard displays the system status, sensor readings, servo positions, and the cartoon dustbin opens the lid when the sensor detects an object..*
 
 ![Dashboard Overview](images/software1.png)
-*Interactive Retro-Cartoon 3D Dashboard showing real-time bin status, live event log, sound FX toggle, and waste tribunal controls.*
+**Waste Detection & Verdict:* The system detects an object and presents the user with the question *“DOES THIS BELONG HERE?”* along with YES and NO options.*
 
 ![Dashboard Overview](images/software4.png)
-*Interactive Retro-Cartoon 3D Dashboard showing real-time bin status, live event log, sound FX toggle, and waste tribunal controls.*
+**Confirmation Stage:* After selecting YES, the system challenges the user with a proof/audit prompt, making the YES option intentionally difficult to select.*
 
 ![Dashboard Overview](images/software3.png)
-*Interactive Retro-Cartoon 3D Dashboard showing real-time bin status, live event log, sound FX toggle, and waste tribunal controls.*
+**Rejection & Angry Mode:* When the user finally selects NO, the system rejects the waste with an angry cartoon animation, screen effects, and the message *“CLAIM REJECTED!”*
 
 
 # Diagrams
