@@ -104,6 +104,27 @@ For Hardware:
 | **Arduino Uno** | 1 | Provides 5V power for the servo motors |
 | **Breadboard** | 1 | Used for temporary prototyping and circuit connections |
 
+![Build](images/hardware%20front%20view.jpg)
+## 🛠️ Our Building Journey
+
+On *September 11th, at around 2:00 PM, we started working on this project and continued working through the night. We finally completed it by **6:00 AM on September 12th. What you see now is the result of **16 hours of straight hard work, problem-solving, and teamwork*.
+
+We started building our project at around *2:00 PM. Thankfully, we had all the necessary sensors and components ready for the project. However, at the last minute, our **ultrasonic sensor suddenly stopped working. Instead of giving up, we immediately came up with a backup plan. We had an **IR sensor* that we had purchased as a backup, so we decided to use it instead. This allowed us to continue building without letting a last-minute hardware failure stop us.
+
+### 🖨️ A Compromise Due to Time & Budget
+
+We initially planned to *3D print both the servo-controlled opening lid and the servo-controlled rejection lid* for our physical trashbin. However, due to *time constraints and budget limitations*, we were unable to get the parts 3D printed.
+
+Although we could not implement our original design exactly as planned, we adapted the physical setup with the resources available to us and continued working towards a functional prototype.
+
+### 🎭 An Unexpected Idea — Giving Teeku a Voice
+
+The *Malayalam movie dialogues* used in our project were not part of our initial plan. While developing the project, we felt that something was missing. We wanted to give our physical trashbin more *personality and character*.
+
+That's when we came up with the idea of giving our trashbin a *face* and making it feel as though it could actually talk. We added a few funny Malayalam movie dialogues to make the interaction more entertaining and give the impression that *Teeku, our trashbin, is actually talking to the user*.
+
+What started as a simple addition turned out to be one of the elements that gave Teeku its own personality and made the project much more fun.
+
 ![Final](images/hardware%20front%20view.jpg)
 *Final completed physical build of the DOES THIS BELONG HERE? Smart Dustbin.*
 
