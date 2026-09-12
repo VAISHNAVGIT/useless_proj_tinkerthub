@@ -104,7 +104,7 @@ For Hardware:
 | **Arduino Uno** | 1 | Provides 5V power for the servo motors |
 | **Breadboard** | 1 | Used for temporary prototyping and circuit connections |
 
-![Build](images/hardware%20front%20view.jpg)
+
 ## 🛠️ Our Building Journey
 
 On *September 11th, at around 2:00 PM, we started working on this project and continued working through the night. We finally completed it by **6:00 AM on September 12th. What you see now is the result of **16 hours of straight hard work, problem-solving, and teamwork*.
