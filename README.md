@@ -93,6 +93,17 @@ For Hardware:
 
 # Build Photos
 
+![Components](images/components.jpg) ## 🧰 Components Used
+
+| Component | Quantity | Purpose |
+|---|---:|---|
+| **ESP32 Dev Module** | 1 | Main microcontroller; handles sensor input, servo control, and WebSocket communication |
+| **Servo Motor** | 2 | One servo controls the main lid, while the second controls the waste rejection trapdoor |
+| **IR Obstacle Sensor Module** | 1 | Detects the presence of a person/object near the dustbin |
+| **Jumper Wires** | As required | Used for connecting the ESP32, sensor, and servo motors |
+| **Arduino Uno** | 1 | Provides 5V power for the servo motors |
+| **Breadboard** | 1 | Used for temporary prototyping and circuit connections |
+
 ![Final](images/hardware%20front%20view.jpg)
 *Final completed physical build of the DOES THIS BELONG HERE? Smart Dustbin.*
 
