@@ -51,7 +51,16 @@ npm run dev
 For Software:
 
 # Screenshots (Add at least 3)
-![Dashboard Overview](images/Screenshot%202026-09-12%20025754.png)
+![Dashboard Overview](images/software2.png)
+*Interactive Retro-Cartoon 3D Dashboard showing real-time bin status, live event log, sound FX toggle, and waste tribunal controls.*
+
+![Dashboard Overview](images/software1.png)
+*Interactive Retro-Cartoon 3D Dashboard showing real-time bin status, live event log, sound FX toggle, and waste tribunal controls.*
+
+![Dashboard Overview](images/software4.png)
+*Interactive Retro-Cartoon 3D Dashboard showing real-time bin status, live event log, sound FX toggle, and waste tribunal controls.*
+
+![Dashboard Overview](images/software3.png)
 *Interactive Retro-Cartoon 3D Dashboard showing real-time bin status, live event log, sound FX toggle, and waste tribunal controls.*
 
 ![Hardware Front View](images/hardware%20front%20view.jpg)
