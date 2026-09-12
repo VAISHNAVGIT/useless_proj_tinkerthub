@@ -93,8 +93,8 @@ For Hardware:
 
 # Build Photos
 
-![Components](images/components.png) ## 🧰 Components Used
-
+![Components](images/components.png) 
+### 🧰 Components Used
 | Component | Quantity | Purpose |
 |---|---:|---|
 | **ESP32 Dev Module** | 1 | Main microcontroller; handles sensor input, servo control, and WebSocket communication |
