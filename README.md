@@ -65,6 +65,10 @@ For Software:
 
 
 # Diagrams
+
+![System workflow](images/workflow.png)
+
+
 ```
 [ IR Sensor (GPIO 18) ] ---> ( Detects Person / Waste )
                                        |
