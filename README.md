@@ -125,7 +125,7 @@ That's when we came up with the idea of giving our trashbin a *face* and making 
 
 What started as a simple addition turned out to be one of the elements that gave Teeku its own personality and made the project much more fun.
 
-![Final](images/hardware%20front%20view.jpg)
+<img src="images/hardware%20front%20view.jpg" alt="Final" width="500">
 *Final completed physical build of the DOES THIS BELONG HERE? Smart Dustbin.*
 
 ### Project Demo
