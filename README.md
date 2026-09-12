@@ -92,8 +92,7 @@ For Hardware:
 *Physical mechanical schematic showing dual-servo trapdoor assembly for top intake and bottom rejection.*
 
 # Build Photos
-
-![Components](images/components.png) 
+<img src="images/components.png" alt="Final" width="500">
 ### 🧰 Components Used
 | Component | Quantity | Purpose |
 |---|---:|---|
