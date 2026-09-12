@@ -85,9 +85,6 @@ For Hardware:
 *Physical mechanical schematic showing dual-servo trapdoor assembly for top intake and bottom rejection.*
 
 # Build Photos
-![Components](images/hardware%20back%20view.jpg)
-*ESP32 Dev Module, FC-51 IR sensor, dual SG90 servos, breadboard, and jumper wiring.*
-
 
 ![Final](images/hardware%20front%20view.jpg)
 *Final completed physical build of the DOES THIS BELONG HERE? Smart Dustbin.*
