@@ -108,7 +108,7 @@ For Hardware:
 
 ## 🛠️ Our Building Journey
 
-On September 11th, at around 2:00 PM, we started working on this project and continued working through the night. We finally completed it by 6:00 AM on September 12th. What you see now is the result of **16 hours of straight hard work, problem-solving, and teamwork.
+On September 11th, at around 2:00 PM, we started working on this project and continued working through the night. We finally completed it by 6:00 AM on September 12th. What you see now is the result of 16 hours of straight hard work, problem-solving, and teamwork.
 
 We started building our project at around 2:00 PM. Thankfully, we had all the necessary sensors and components ready for the project. However, at the last minute, our ultrasonic sensor suddenly stopped working. Instead of giving up, we immediately came up with a backup plan. We had an IR sensor that we had purchased as a backup, so we decided to use it instead. This allowed us to continue building without letting a last-minute hardware failure stop us.
 
