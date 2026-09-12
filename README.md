@@ -88,8 +88,6 @@ For Hardware:
 ![Components](images/hardware%20back%20view.jpg)
 *ESP32 Dev Module, FC-51 IR sensor, dual SG90 servos, breadboard, and jumper wiring.*
 
-![Build](images/hardware%20front%20view.jpg)
-*Chassis fabrication showing dual trapdoors and servo arm mounting.*
 
 ![Final](images/hardware%20front%20view.jpg)
 *Final completed physical build of the DOES THIS BELONG HERE? Smart Dustbin.*
