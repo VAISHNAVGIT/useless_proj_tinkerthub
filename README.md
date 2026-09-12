@@ -93,6 +93,7 @@ For Hardware:
 
 # Build Photos
 <img src="images/components.png" alt="Final" width="500">
+
 ### 🧰 Components Used
 | Component | Quantity | Purpose |
 |---|---:|---|
