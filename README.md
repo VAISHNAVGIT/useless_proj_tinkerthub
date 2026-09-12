@@ -61,7 +61,7 @@ For Software:
 **Confirmation Stage:* After selecting YES, the system challenges the user with a proof/audit prompt, making the YES option intentionally difficult to select.*
 
 ![Dashboard Overview](images/software3.png)
-**Rejection & Angry Mode:* When the user finally selects NO, the system rejects the waste with an angry cartoon animation, screen effects, and the message *“CLAIM REJECTED!”*
+**Rejection & Angry Mode:* When the user finally selects NO, the system rejects the waste with an angry cartoon animation, screen effects, and the message *“CLAIM REJECTED!”**
 
 
 # Diagrams
