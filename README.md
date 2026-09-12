@@ -93,7 +93,7 @@ For Hardware:
 
 # Build Photos
 
-![Components](images/components.jpg) ## 🧰 Components Used
+![Components](images/components.png) ## 🧰 Components Used
 
 | Component | Quantity | Purpose |
 |---|---:|---|
