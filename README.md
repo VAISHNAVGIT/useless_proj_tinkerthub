@@ -63,11 +63,6 @@ For Software:
 ![Dashboard Overview](images/software3.png)
 *Interactive Retro-Cartoon 3D Dashboard showing real-time bin status, live event log, sound FX toggle, and waste tribunal controls.*
 
-![Hardware Front View](images/hardware%20front%20view.jpg)
-*Front physical build view of the Smart Bin featuring the top motorized intake lid.*
-
-![Hardware Back View](images/hardware%20back%20view.jpg)
-*Back physical build view displaying the ESP32 microcontroller, IR sensor, and servo wiring setup.*
 
 # Diagrams
 ```
