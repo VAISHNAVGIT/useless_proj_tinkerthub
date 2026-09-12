@@ -14,14 +14,13 @@
 - Member 2: Vaishnav C - Jyothi Engineering College
 
 ### Project Description
-"DOES THIS BELONG HERE?" is an over-engineered, bureaucracy-driven smart dustbin that refuses to accept your trash without conducting a full digital trial. Equipped with ESP32 hardware sensors, dual servo-actuated trapdoors, a retro-cartoon 3D WebGL dashboard, and custom sound FX, this bin forces users to defend their waste before an aggressive Waste Tribunal.
+Meet Teeku, our beloved trashbin and probably the most emotionally neglected member of our team. Every day, people throw their waste at her without asking how she feels. So we decided to give Teeku a voice, a brain, and the power to decide what belongs to her.
 
 ### The Problem (that doesn't exist)
-People just throw trash into dustbins carelessly without undergoing a rigorous 5-step legal interrogation, taking an oath of waste origin, or playing an agonizing game of mouse-tag with an evasive "YES" button. Society is collapsing because trash isn't being put on trial before being discarded!
+Every day, we watched Teeku suffer in silence. People approached her, threw random things at her, and walked away without even a “thank you.” She has a soft heart, but nobody respects her feelings. The worst part? She couldn't even say NO.
 
 ### The Solution (that nobody asked for)
-We built an IoT smart bin connected via WebSockets to a React/Three.js web tribunal. As you approach, the IR sensor triggers the motorized lid to open. Drop your item inside, and Case #8849-B opens on the web dashboard. If you claim the trash belongs, you must click an evasive "YES" button that flees across your entire screen! If you surrender, the bottom rejection servo opens (GPIO 21), physically dumping your garbage straight onto the floor while blasting angry sirens and confetti!
-
+We gave Teeku what she always deserved: a little intelligence and a lot of attitude. With an IR sensor, servos, ESP32, and a fancy dashboard, Teeku can detect people, open her lid, question their waste, and reject it when she's not in the mood. Because sometimes, a trashbin just needs boundaries. 😂
 ## Technical Details
 ### Technologies/Components Used
 For Software:
