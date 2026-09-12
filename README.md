@@ -82,7 +82,7 @@ For Software:
 For Hardware:
 
 # Schematic & Circuit
-![Hardware Circuit Wiring](images/hardware%20back%20view.jpg)
+![Hardware Circuit Wiring](images/schematics.png)
 *Hardware circuit wiring displaying ESP32 GPIO 18 (IR Sensor), GPIO 19 (Lid Servo), GPIO 21 (Rejection Servo) and 5V Common Ground connection.*
 
 ![Hardware Physical Structure](images/hardware%20front%20view.jpg)
